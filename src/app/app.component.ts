@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+  title = 'JavaScript';
+  name = 'Jessie';
+  list = [
+    '리스트1',
+    '리스트2',
+    '리스트3'
+  ]
 }
