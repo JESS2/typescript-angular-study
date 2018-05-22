@@ -1,0 +1,12 @@
+tbody tr:hover {
+    background: yellow;
+    cursor: pointer;
+}
+
+input {
+    max-width: 200px;
+}
+
+button {
+    margin-bottom: 5px;
+}
