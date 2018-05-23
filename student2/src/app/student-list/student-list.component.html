@@ -1,0 +1,53 @@
+<h1>학생 목록</h1>
+
+<button type="button" class="btn btn-default pull-right" (click)="createStudent()">학생 등록</button>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>학번</th>
+      <th>이름</th>
+      <th>이메일</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!--selectedStudent 멤버변수와 s 변수의 값이 일치하면 tr태그에 CSS 클래스를 추가한다-->
+    <tr *ngFor="let s of students let i=index" (click)="selectStudent(s, i)" [class.red]="i == selectedIndex">
+      <td>{{ s.id }}</td>
+      <td>{{ s.studentNo }}</td>
+      <td>{{ s.name }}</td>
+      <td>{{ s.email }}</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<hr/>
+<div *ngIf="selectedStudent"> <!--selectedStudent 멤버변수 값이 false이거나 undefined이거나, null이면 출력하지 않음-->
+  <div class="form-group">
+    <label>id</label>
+    <!--선택한 학생의 id값을 출력함-->
+    <input type="text" value="{{ selectedStudent.id }}" class="form-control" disabled />
+  </div>
+  <div class="form-group">
+    <label>학번</label>
+    <!--선택한 학생의 학번을 input 태그에 출력하고 input 태그에 입력한 값을 실시간으로 학번에 새로 대입-->
+    <input type="text" [(ngModel)]="selectedStudent.studentNo" class="form-control" />
+  </div>
+  <div class="form-group">
+    <label>이름</label>
+    <!--선택한 학생의 이름을 input 태그에 출력하고 input 태그에 입력한 값을 실시간으로 이름에 새로 대입-->
+    <input type="text" [(ngModel)]="selectedStudent.name" class="form-control" />
+  </div>
+  <div class="form-group">
+    <label>이메일</label>
+    <!--선택한 학생의 이메일을 input 태그에 출력하고 input 태그에 입력한 값을 실시간으로 이메일에 새로 대입-->
+    <input type="text" [(ngModel)]="selectedStudent.email" class="form-control" />
+  </div>
+  <div>
+    <button type="button" class="btn btn-primary" (click)="save()">저장</button>
+    <button type="button" class="btn btn-default" (click)="close()">닫기</button>
+    <button type="button" class="btn btn-default" (click)="deleteStudent()" *ngIf="selectedIndex >= 0">삭제</button>
+  </div>
+</div>
